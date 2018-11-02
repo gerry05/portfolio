@@ -106,6 +106,12 @@ i.close-icon.active {
     font-size: 40px;
 }
 
+@media only screen and (max-width: 480px) {
+    .mobile-menu li {
+        font-size: 20px;
+    }
+}
+
 .mobile-menu ul li a {
     color: white;
 }
