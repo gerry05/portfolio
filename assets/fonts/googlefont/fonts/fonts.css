@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: url(Lato_400_normal.eot); /* {{embedded-opentype-gf-url}} */
+    src: local('☺'),
+        url(Lato_400_normal.eot?#iefix) format('embedded-opentype'), /* {{embedded-opentype-gf-url}} */
+        url(Lato_400_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/lato/v13/9k-RPmcnxYEPm8CNFsH2gg.woff */
+        url(Lato_400_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/lato/v13/1EqTbJWOZQBfhZ0e3RL9uvesZW2xOQ-xsNqO47m55DA.ttf */
+        url(Lato_400_normal.svg#Lato_400_normal) format('svg'); /* http://fonts.gstatic.com/l/font?kit=hLECvlEj3pKlnS4NFs8NQw&skey=2d58b92a99e1c086&v=v13#Lato */
+}
+@font-face {
+    font-family: 'Bungee Inline';
+    font-style: normal;
+    font-weight: 400;
+    src: url(Bungee+Inline_400_normal.eot); /* {{embedded-opentype-gf-url}} */
+    src: local('☺'),
+        url(Bungee+Inline_400_normal.eot?#iefix) format('embedded-opentype'), /* {{embedded-opentype-gf-url}} */
+        url(Bungee+Inline_400_normal.woff) format('woff'), /* http://fonts.gstatic.com/s/bungeeinline/v2/Tb-1914q4rFpjT-F66PLCfn8qdNnd5eCmWXua5W-n7c.woff */
+        url(Bungee+Inline_400_normal.ttf) format('truetype'), /* http://fonts.gstatic.com/s/bungeeinline/v2/Tb-1914q4rFpjT-F66PLCYWcQgv0WMKv2x2qfcALabs.ttf */
+        url(Bungee+Inline_400_normal.svg#Bungee+Inline_400_normal) format('svg'); /* http://fonts.gstatic.com/l/font?kit=Tb-1914q4rFpjT-F66PLCTyKAGS2js9R2mTcvyyc0eU&skey=ff5b0f9d1988133a&v=v2#BungeeInline */
+}

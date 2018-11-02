@@ -1,0 +1,755 @@
+/*
+	Theme Name: WP Individual
+	Theme URI: http://asdsad.com
+	Description: HTML5 WordPress Theme
+	Version: 1.4.3
+	Author: coffeelappy
+	Author URI: http://coffeelappy.com
+	Tags: Blank, HTML5, CSS3
+
+	License: MIT
+	License URI: http://opensource.org/licenses/mit-license.php
+*/
+
+body {
+    background-color: #141313;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: black;
+}
+
+nav {
+    display: none;
+}
+
+@media only screen and (min-width: 601px) {
+    .row .col.m2-5 {
+        width: 20%;
+        margin-left: auto;
+        left: auto;
+        right: auto
+    }
+}
+
+
+/** INDEX MENU **/
+
+
+/** MOBILE **/
+
+.mobile-nav a#mobile-btn {
+    color: black;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+    right: 4%;
+    margin-top: 10px;
+    position: fixed;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.mobile-nav a#mobile-btn i {
+    font-size: 40px;
+    margin-top: 10%;
+}
+
+i.hamburger-icon,
+i.close-icon {
+    display: none;
+}
+
+i.hamburger-icon.active,
+i.close-icon.active {
+    display: block;
+}
+
+.mobile-menu {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: none;
+    position: fixed;
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu ul {
+    margin: 18vh;
+}
+
+.mobile-menu li {
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-family: "Bungee Inline";
+    font-size: 40px;
+}
+
+.mobile-menu ul li a {
+    color: white;
+}
+
+
+/** END of MOBILE **/
+
+.side-nav-right {
+    position: fixed;
+    width: 15%;
+    margin-top: 10vh;
+}
+
+.side-nav-right img {
+    height: 130px;
+    width: 140px;
+    margin: auto auto 30px auto;
+    display: none;
+}
+
+.side-nav-right img.active {
+    display: block;
+}
+
+.index-menu {
+    text-align: center;
+}
+
+.index-menu ul {
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+}
+
+.index-menu ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.index-menu ul li {
+    list-style-type: none;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.index-menu ul li a {
+    color: #817F7F;
+    font-family: "Bungee Inline";
+    font-size: 23px;
+}
+
+.index-menu ul li a.active {
+    color: white !important;
+    font-size: 28px;
+}
+
+.index-menu ul li a:hover {
+    color: white;
+}
+
+
+/** PAGES MENU **/
+
+.blog-side-nav-right {
+    text-align: center;
+    position: fixed;
+    width: 15%;
+    margin-top: 2vh;
+}
+
+.blog-side-nav-right ul::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.blog-side-nav-right ul li {
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.blog-side-nav-right ul li a {
+    color: #817F7F;
+    font-family: "Bungee Inline";
+    font-size: 23px;
+}
+
+.blog-side-nav-right ul li:nth-child(2) a {
+    color: white !important;
+    font-size: 28px;
+}
+
+.blog-side-nav-right img {
+    height: 130px;
+    width: 140px;
+}
+
+
+/***HOME or INDEX PAGE***/
+
+.home .row {
+    margin-bottom: 0;
+}
+
+
+/** who am i SECTION**/
+
+.who-am-i {
+    display: none;
+}
+
+.who-am-i.active {
+    display: block;
+}
+
+.personal-info {
+    margin-top: 15vh;
+    text-align: center;
+    color: white;
+}
+
+.personal-info .profile-picture img {
+    height: 180px;
+    width: 190px;
+}
+
+.personal-info h5 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.personal-info h6 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.personal-info p {
+    width: 90%;
+    padding-top: 10px;
+    margin: auto;
+    padding-bottom: 10px;
+}
+
+@media only screen and (min-width: 601px) {
+    .personal-info p {
+        width: 70%
+    }
+}
+
+@media only screen and (min-width: 993px) {
+    .personal-info p {
+        width: 70%
+    }
+}
+
+.social-media img {
+    height: 50px;
+    padding: 8px;
+    margin-right: 10px;
+    border: 2px solid #817F7F;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.social-media img:hover {
+    border: 2px solid white;
+}
+
+
+/**END of who am i SECTION**/
+
+
+/** EXPERIENCE **/
+
+.experience {
+    color: white;
+    display: none;
+    margin-top: 8vh;
+}
+
+.experience.active {
+    display: block;
+}
+
+.experience h4.title {
+    color: #B1153E;
+    padding: 10px;
+    font-family: "Bungee Inline";
+    font-size: 60px;
+}
+
+.my-experience {
+    margin: 0 5%;
+}
+
+.work-exp {
+    margin-right: 10px;
+}
+
+.work-info {
+    margin-top: 30px;
+}
+
+.work-exp h6 {
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 993px) {
+    .my-experience {
+        margin: 0;
+    }
+}
+
+
+/** END of EXPERIENCE **/
+
+
+/** SKILLS **/
+
+.skills {
+    color: white;
+    display: none;
+    margin-top: 8vh;
+}
+
+.skills.active {
+    display: block;
+}
+
+.skills h4.title {
+    color: #B1153E;
+    padding: 10px;
+    font-family: "Bungee Inline";
+    font-size: 60px;
+}
+
+.my-skills {
+    margin: 0 5%;
+}
+
+.my-skills .determinate span {
+    color: white;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.my-skills .progress {
+    height: 35px;
+    background-color: white;
+    line-height: 35px;
+}
+
+
+/* .my-skills .low-rate .determinate {
+    background-color: #20CB1E;
+}
+
+.my-skills .guarded-rate .determinate {
+    background-color: #2C55FB;
+}
+
+.my-skills .elevated-rate .determinate {
+    background-color: #E1D516;
+}
+
+.my-skills .high-rate .determinate {
+    background-color: #F56E11;
+}
+
+.my-skills .severe-rate .determinate {
+    background-color: #F56E11;
+} */
+
+.my-skills .low-rate .determinate {
+    background-color: #F56E11;
+}
+
+.my-skills .guarded-rate .determinate {
+    background-color: #F56E11;
+}
+
+.my-skills .elevated-rate .determinate {
+    background-color: #F56E11;
+}
+
+.my-skills .high-rate .determinate {
+    background-color: #F56E11;
+}
+
+.my-skills .severe-rate .determinate {
+    background-color: #F56E11;
+}
+
+@media only screen and (max-width: 601px) {
+    .my-skills .determinate span {
+        font-size: 15px;
+        padding-left: 10px;
+    }
+    .my-skills .progress {
+        height: 28px;
+        line-height: 28px;
+    }
+}
+
+
+/** END of SKILLS **/
+
+
+/**PROJECTS**/
+
+.projects {
+    color: #F9EEEE;
+    display: none;
+    margin-top: 8vh;
+}
+
+.projects.active {
+    display: block;
+}
+
+.projects h4.title {
+    color: #FFFFFF;
+    padding: 10px;
+    font-family: "Bungee Inline";
+    font-size: 60px;
+}
+
+.my-project {
+    margin: 0 5%;
+}
+
+.project-info {
+    margin-bottom: 180px;
+}
+
+.project-title h5 {
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+.project-title h6 {
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.project-details {
+    margin: 0 10%;
+}
+
+.project-details p {
+    font-weight: 200;
+}
+
+.project-link {
+    margin-top: 20px;
+}
+
+.project-link a {
+    font-weight: bold;
+}
+
+.project-link a:nth-child(1) {
+    color: #07A6DD;
+    border: 2px solid #07A6DD;
+    padding: 10px;
+    margin-right: 5px;
+}
+
+.project-link a:nth-child(2) {
+    color: #EA4C89;
+    border: 2px solid #EA4C89;
+    padding: 10px;
+}
+
+
+/**END of PROJECTS**/
+
+
+/**BLOGS**/
+
+.blogs {
+    height: 100vh;
+    display: none;
+    margin-top: 8vh;
+    color: white;
+}
+
+.blogs h4.title {
+    color: #B1153E;
+    padding: 10px;
+    font-family: "Bungee Inline";
+    font-size: 60px;
+}
+
+.blogs.active {
+    display: block;
+}
+
+.my-blogs {
+    margin: 0 5%;
+    padding-bottom: 50px;
+}
+
+.post-title h5 a {
+    font-size: 25px;
+    text-decoration-line: underline;
+    margin-bottom: 0;
+    color: #069CC6;
+}
+
+.post-title a.author {
+    font-weight: 900;
+    color: white;
+}
+
+.post-description {
+    margin-top: 10px;
+    font-weight: 300;
+}
+
+.post-description ul {
+    padding-left: 40px;
+}
+
+.post-description ul li {
+    list-style-type: disc;
+}
+
+.post-description p::first-letter,
+.post-description div::first-letter {
+    text-transform: uppercase;
+}
+
+.post-description .more-link {
+    background-color: #069CC6;
+    color: white;
+    padding: 8px;
+}
+
+.post-description p a {
+    content: "";
+    display: block;
+    clear: both;
+    margin-top: 10px;
+    width: 140px;
+    text-align: center;
+}
+
+.see-all-post {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.see-all-post a {
+    padding: 20px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 900;
+}
+
+.see-all-post a:hover {
+    color: black;
+    background-color: white;
+}
+
+@media only screen and (max-width: 993px) {
+    .blogs .post {
+        margin: 0%;
+    }
+    .post .post-content {
+        margin: 0;
+    }
+}
+
+@media only screen and (max-width: 603px) {
+    .post .post-content {
+        margin: 0;
+    }
+}
+
+.post-content hr {
+    margin: 50px 0;
+}
+
+.page-blog-header {
+    margin-top: 0;
+}
+
+
+/**END of BLOGS**/
+
+
+/**SINGLE POST**/
+
+.single-page {
+    padding-top: 8vh;
+}
+
+.single-post-content {
+    margin: 0 5%;
+}
+
+.single-header h4 {
+    color: white;
+    font-family: "Bungee Inline";
+    font-size: 60px;
+    padding: 10px;
+}
+
+.single-post-title h5 a {
+    color: #069CC6;
+    font-size: 45px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 502px) {
+    .single-post-title h5 {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (max-width: 603px) {
+    .single-post-content {
+        margin: 0;
+    }
+}
+
+.single-post-title h6 {
+    color: white;
+}
+
+.single-post-title h6 a {
+    color: white;
+    font-weight: 900;
+}
+
+.single-post-description {
+    color: white;
+}
+
+.single-post-description ul {
+    padding-left: 40px;
+}
+
+.single-post-description ul li {
+    list-style-type: disc;
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.single-post-description p::first-letter,
+.single-post-description div::first-letter {
+    text-transform: uppercase;
+}
+
+
+/**END of SINGLE POST**/
+
+
+/**ALL SECTIONS**/
+
+@media only screen and (max-width: 993px) {
+    .who-am-i,
+    .experience,
+    .skills,
+    .blogs {
+        height: 100vh;
+        display: block;
+    }
+    .projects {
+        height: auto;
+        display: block;
+    }
+    .container {
+        width: 90%;
+    }
+}
+
+.experience h4.title,
+.skills h4.title,
+.projects h4.title,
+.blogs h4.title,
+.single-header h4.title {
+    margin-bottom: 30px;
+}
+
+@media only screen and (max-width: 603px) {
+    .who-am-i,
+    .experience,
+    .projects,
+    .blogs {
+        height: auto;
+        display: block;
+    }
+    .project-details {
+        margin: 0 0;
+    }
+    .experience h4.title,
+    .skills h4.title,
+    .projects h4.title,
+    .blogs h4.title,
+    .single-header h4.title {
+        font-size: 12vw;
+    }
+    .container {
+        width: 95%;
+    }
+}
+
+@media only screen and (min-width: 367px) and (max-width: 603px) {
+    .who-am-i {
+        height: 100vh;
+    }
+}
+
+@media only screen and (min-width: 994px) {
+    p {
+        font-size: 18px;
+        font-weight: 100;
+    }
+    .post-description {
+        font-size: 18px;
+        font-weight: 100;
+    }
+}
+
+@media only screen and (max-width: 993px) {
+    p {
+        font-size: 16px;
+        font-weight: 100;
+    }
+    .post-description {
+        font-size: 16px;
+        font-weight: 100;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #index-body {
+        overflow: auto;
+    }
+}
