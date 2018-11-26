@@ -1,15 +1,3 @@
-/*
-	Theme Name: WP Individual
-	Theme URI: http://asdsad.com
-	Description: HTML5 WordPress Theme
-	Version: 1.4.3
-	Author: coffeelappy
-	Author URI: http://coffeelappy.com
-	Tags: Blank, HTML5, CSS3
-
-	License: MIT
-	License URI: http://opensource.org/licenses/mit-license.php
-*/
 
 body {
     background-color: #141313;
@@ -447,11 +435,8 @@ i.close-icon.active {
 }
 
 .project-info {
-<<<<<<< HEAD
     margin-top: 50px;
-=======
     margin-bottom: 180px;
->>>>>>> de989238cead9432cbce45b92ea9b59ef34be3bc
 }
 
 .project-title h5 {
@@ -493,15 +478,12 @@ i.close-icon.active {
     padding: 10px;
 }
 
-<<<<<<< HEAD
 @media only screen and (max-width: 720px) {
     .project-info {
         margin-top: 0px;
     }   
 }
 
-=======
->>>>>>> de989238cead9432cbce45b92ea9b59ef34be3bc
 
 /**END of PROJECTS**/
 
