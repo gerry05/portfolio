@@ -447,7 +447,7 @@ i.close-icon.active {
 }
 
 .project-info {
-    margin-bottom: 180px;
+    margin-top: 50px;
 }
 
 .project-title h5 {
@@ -487,6 +487,12 @@ i.close-icon.active {
     color: #EA4C89;
     border: 2px solid #EA4C89;
     padding: 10px;
+}
+
+@media only screen and (max-width: 720px) {
+    .project-info {
+        margin-top: 0px;
+    }   
 }
 
 
