@@ -55,7 +55,6 @@
                                         alt=""></a>
                                 <a href="mailto:gerryalbertbuala@yahoo.com"><img src="assets/images/social-icons/email.png"
                                         alt=""></a>
-
                             </div>
                         </section>
                     </div>
@@ -166,36 +165,35 @@
                                     </div>
                                 </div>
                             </div>
+                        </section>
                     </div>
-                    </section>
                 </div>
-            </div>
-            <div class="col l2">
-                <div class="side-nav-right hide-on-med-and-down">
-                    <center><img src="assets/images/navigation-icons/who-am-i.svg" id="who-am-i-icon" alt=""></center>
-                    <center><img src="assets/images/navigation-icons/experience.svg" id="experience-icon" alt=""></center>
-                    <center><img src="assets/images/navigation-icons/skills.svg" id="skills-icon" alt=""></center>
-                    <center><img src="assets/images/navigation-icons/projects.svg" id="projects-icon" alt=""></center>
-                    <div class="index-menu">
-                        <ul>
-                            <li>
-                                <a href="#a-who-am-i" class="active" id="who_am_i_btn">Who am I?</a>
-                            </li>
-                            <li>
-                                <a href="#a-experience" id="experience_btn">Experience</a>
-                            </li>
-                            <li>
-                                <a href="#a-skills" id="skills_btn">Skills</a>
-                            </li>
-                            <li>
-                                <a href="#a-projects" id="projects_btn">Projects</a>
-                            </li>
-                        </ul>
+                <div class="col l2">
+                    <div class="side-nav-right hide-on-med-and-down">
+                        <center><img src="assets/images/navigation-icons/who-am-i.svg" id="who-am-i-icon" alt=""></center>
+                        <center><img src="assets/images/navigation-icons/experience.svg" id="experience-icon" alt=""></center>
+                        <center><img src="assets/images/navigation-icons/skills.svg" id="skills-icon" alt=""></center>
+                        <center><img src="assets/images/navigation-icons/projects.svg" id="projects-icon" alt=""></center>
+                        <div class="index-menu">
+                            <ul>
+                                <li>
+                                    <a href="#a-who-am-i" class="active" id="who_am_i_btn">Who am I?</a>
+                                </li>
+                                <li>
+                                    <a href="#a-experience" id="experience_btn">Experience</a>
+                                </li>
+                                <li>
+                                    <a href="#a-skills" id="skills_btn">Skills</a>
+                                </li>
+                                <li>
+                                    <a href="#a-projects" id="projects_btn">Projects</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!--Import jQuery before materialize.js-->
@@ -211,24 +209,23 @@
             g = 0,
             b = 0;
         setInterval(function () {
-            setInterval(function () {
-                if (r > 0 && b == 0) {
-                    r--;
-                    g++;
-                }
-                if (g > 0 && r == 0) {
-                    g--;
-                    b++;
-                }
-                if (b > 0 && g == 0) {
-                    r++;
-                    b--;
-                }
-                $("#profile-picture").css("border", ".5rem solid rgb(" + r + "," + g + "," + b + ")");
-                $("#exp-header").css("color", "rgb(" + 247 + "," + g + "," + b + ")");
-                $("#skills-header").css("color", "rgb(" + 247 + "," + g + "," + b + ")");
-                $("#projects-header").css("color", "rgb(" + r + "," + 247 + "," + b + ")");
-            }, 15)
+            if (r > 0 && b == 0) {
+                r--;
+                g++;
+            }
+            if (g > 0 && r == 0) {
+                g--;
+                b++;
+            }
+            if (b > 0 && g == 0) {
+                r++;
+                b--;
+            }
+            $("#profile-picture").css("border", ".5rem solid rgb(" + r + "," + g + "," + b + ")");
+            $("#exp-header").css("color", "rgb(" + 247 + "," + g + "," + b + ")");
+            $("#skills-header").css("color", "rgb(" + 247 + "," + g + "," + b + ")");
+            $("#projects-header").css("color", "rgb(" + r + "," + 247 + "," + b + ")");
+        }, 15)
     </script>
 
 </body>
