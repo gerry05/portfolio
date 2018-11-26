@@ -447,7 +447,11 @@ i.close-icon.active {
 }
 
 .project-info {
+<<<<<<< HEAD
     margin-top: 50px;
+=======
+    margin-bottom: 180px;
+>>>>>>> de989238cead9432cbce45b92ea9b59ef34be3bc
 }
 
 .project-title h5 {
@@ -489,12 +493,15 @@ i.close-icon.active {
     padding: 10px;
 }
 
+<<<<<<< HEAD
 @media only screen and (max-width: 720px) {
     .project-info {
         margin-top: 0px;
     }   
 }
 
+=======
+>>>>>>> de989238cead9432cbce45b92ea9b59ef34be3bc
 
 /**END of PROJECTS**/
 
