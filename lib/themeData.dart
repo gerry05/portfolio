@@ -2,59 +2,100 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 ThemeData buildTheme() {
-  const Color textColorWhite = Colors.white;
-  const Color backgroundColorWhite = Colors.white;
+  const Color primaryColor = Color(0xFF64FFDA); // Teal accent
+  const Color backgroundColor = Color(0xFF0A192F); // Deep Navy
+  const Color surfaceColor = Color(0xFF112240); // Lighter Navy for cards
+  const Color textColorMain = Color(0xFFCCD6F6);
+  const Color textColorDim = Color(0xFF8892B0);
+
   return ThemeData(
-    brightness: Brightness.dark, // Ensures dark theme
-    primaryColor: Colors.white,
-    scaffoldBackgroundColor: Colors.transparent,
+    brightness: Brightness.dark,
+    primaryColor: primaryColor,
+    scaffoldBackgroundColor: backgroundColor,
+    canvasColor: surfaceColor,
+    colorScheme: const ColorScheme.dark(
+      primary: primaryColor,
+      surface: surfaceColor,
+      onSurface: textColorMain,
+      onPrimary: backgroundColor,
+    ),
     textTheme: TextTheme(
-      bodyLarge:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      bodyMedium:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      bodySmall:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      titleLarge: GoogleFonts.jura(
-          textStyle: const TextStyle(color: textColorWhite)), // AppBar title
-      titleSmall:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      titleMedium:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      labelLarge:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      labelMedium:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      labelSmall:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      displayLarge:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      displayMedium:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      displaySmall:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      headlineLarge:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      headlineMedium:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
-      headlineSmall:
-          GoogleFonts.jura(textStyle: const TextStyle(color: textColorWhite)),
+      displayLarge: GoogleFonts.jura(
+        textStyle: const TextStyle(
+          color: textColorMain,
+          fontSize: 64,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      displayMedium: GoogleFonts.jura(
+        textStyle: const TextStyle(
+          color: textColorMain,
+          fontSize: 48,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      displaySmall: GoogleFonts.jura(
+        textStyle: const TextStyle(
+          color: textColorMain,
+          fontSize: 32,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      headlineMedium: GoogleFonts.jura(
+        textStyle: const TextStyle(
+          color: primaryColor,
+          fontSize: 24,
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      bodyLarge: GoogleFonts.jura(
+        textStyle: const TextStyle(
+          color: textColorDim,
+          fontSize: 18,
+          height: 1.6,
+        ),
+      ),
+      bodyMedium: GoogleFonts.jura(
+        textStyle: const TextStyle(
+          color: textColorDim,
+          fontSize: 16,
+          height: 1.5,
+        ),
+      ),
     ),
     appBarTheme: AppBarTheme(
-      color: Colors.transparent, // AppBar background color
+      backgroundColor: backgroundColor.withOpacity(0.8),
+      elevation: 0,
+      centerTitle: false,
       titleTextStyle: GoogleFonts.jura(
-          textStyle: const TextStyle(color: textColorWhite, fontSize: 32)),
-      iconTheme: const IconThemeData(color: textColorWhite),
+        textStyle: const TextStyle(
+          color: primaryColor,
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+      iconTheme: const IconThemeData(color: primaryColor),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        foregroundColor: backgroundColorWhite,
-        backgroundColor: Colors.blue, // Button text color
+        foregroundColor: backgroundColor,
+        backgroundColor: primaryColor,
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4),
+        ),
+        textStyle: GoogleFonts.jura(
+          fontWeight: FontWeight.bold,
+        ),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: textColorWhite, // Button text color
+        foregroundColor: primaryColor,
+        textStyle: GoogleFonts.jura(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     ),
   );
