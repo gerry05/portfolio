@@ -20,15 +20,20 @@ class _ProjectsSectionState extends State<ProjectsSection> {
       'website': 'https://tarasnap.com'
     },
     {
-      'title': 'Learnpod',
-      'tools': ['android', 'flutter', 'firebase', 'nodejs'],
-      'image': 'assets/projects/learnpod.png',
+      'title': 'RealtyTrack Offline',
+      'tools': ['android', 'flutter'],
+      'image': 'assets/projects/realtytrack.png'
     },
     {
       'title': 'WordHunt',
       'tools': ['android', 'web', 'flutter', 'generative_ai'],
       'image': 'assets/projects/wordhunt.png',
       'website': 'https://gerry05.github.io/wordhunt',
+    },
+    {
+      'title': 'Learnpod',
+      'tools': ['android', 'flutter', 'firebase', 'nodejs'],
+      'image': 'assets/projects/learnpod.png',
     },
     {
       'title': 'Libot',
