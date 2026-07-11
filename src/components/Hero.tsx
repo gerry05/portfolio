@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { site } from "@/data/portfolio";
+import { withBasePath } from "@/lib/paths";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -23,7 +24,7 @@ export function Hero() {
         transition={{ duration: 1.4, ease }}
       >
         <Image
-          src="/images/me.jpg"
+          src={withBasePath("/images/me.jpg")}
           alt=""
           fill
           priority

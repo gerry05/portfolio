@@ -9,6 +9,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import { withBasePath } from "@/lib/paths";
 import { useRef, type MouseEvent } from "react";
 
 type PhoneShowcaseProps = {
@@ -68,7 +69,7 @@ export function PhoneShowcase({ src, alt, priority }: PhoneShowcaseProps) {
         <div className="phone-notch" aria-hidden />
         <div className="phone-screen">
           <Image
-            src={src}
+            src={withBasePath(src)}
             alt={alt}
             width={1080}
             height={2400}
