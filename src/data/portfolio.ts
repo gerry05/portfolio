@@ -153,17 +153,5 @@ export const projects = [
       },
     ],
   },
-  {
-    title: "Swift",
-    description:
-      "An Android product using Java and Firebase for real-time features.",
-    tools: ["Android", "Java", "Firebase"],
-    images: [
-      {
-        src: "/projects/swift.png",
-        frame: "phone" as const,
-        alt: "Swift app screenshot",
-      },
-    ],
-  },
+ 
 ] as const;
