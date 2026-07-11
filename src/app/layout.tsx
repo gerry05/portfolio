@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, IBM_Plex_Mono, Outfit } from "next/font/google";
+import { CustomCursor } from "@/components/CustomCursor";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -43,7 +44,10 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${bricolage.variable} ${plex.variable} h-full antialiased`}
     >
-      <body className="site-shell min-h-full">{children}</body>
+      <body className="site-shell min-h-full">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

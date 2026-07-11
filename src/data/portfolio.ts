@@ -42,6 +42,20 @@ export type ProjectImage = {
 
 export const projects = [
   {
+    title: "TaraSnap",
+    description:
+      "An event photobooth app—pick a frame, snap or upload photos, customize your strip, and share instantly. Built with Flutter, Next.js, and Supabase, with event hosting so guests can use branded frames together.",
+    tools: ["Flutter", "Next.js", "Supabase"],
+    images: [
+      {
+        src: "/projects/tarasnap-latest.jpg",
+        frame: "phone" as const,
+        alt: "TaraSnap app screenshot",
+      },
+    ],
+    website: "https://tarasnap.com",
+  },
+  {
     title: "LANDTATC",
     description:
       "A market operations platform for the TATC Public Market in Roxas City, Philippines—Flutter for mobile, Next.js for the admin web app, and MySQL on the backend. Used to collect vendor rental payments and record goods and food deliveries at the public market.",
@@ -72,20 +86,6 @@ export const projects = [
       },
     ],
     website: "https://www.facebook.com/amboothph",
-  },
-  {
-    title: "TaraSnap",
-    description:
-      "An event photobooth app—pick a frame, snap or upload photos, customize your strip, and share instantly. Built with Flutter, Next.js, and Supabase, with event hosting so guests can use branded frames together.",
-    tools: ["Flutter", "Next.js", "Supabase"],
-    images: [
-      {
-        src: "/projects/tarasnap-latest.jpg",
-        frame: "phone" as const,
-        alt: "TaraSnap app screenshot",
-      },
-    ],
-    website: "https://tarasnap.com",
   },
   {
     title: "RealtyTrack Offline",

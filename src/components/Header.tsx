@@ -1,7 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 import { site } from "@/data/portfolio";
 
 const links = [
@@ -13,6 +19,13 @@ const links = [
 export function Header() {
   const [overHero, setOverHero] = useState(true);
   const [open, setOpen] = useState(false);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 30,
+    mass: 0.35,
+  });
 
   useEffect(() => {
     const hero = document.getElementById("top");
@@ -44,14 +57,34 @@ export function Header() {
           : "border-b border-line bg-white/80 shadow-[0_8px_30px_rgba(10,10,11,0.04)] backdrop-blur-xl"
       }`}
     >
+      {!reduce && (
+        <motion.div
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-[2px] origin-left"
+          style={{
+            scaleX: progress,
+            background: overHero
+              ? "linear-gradient(90deg, #14b8a6, #38bdf8)"
+              : "linear-gradient(90deg, #0f766e, #14b8a6)",
+          }}
+          aria-hidden
+        />
+      )}
+
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-8">
-        <a href="#top" className="site-header__brand font-[family-name:var(--font-display)] text-xl font-bold tracking-tight">
+        <a
+          href="#top"
+          className="site-header__brand font-[family-name:var(--font-display)] text-xl font-bold tracking-tight"
+        >
           {site.brand}
         </a>
 
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="site-header__link text-sm font-medium">
+            <a
+              key={link.href}
+              href={link.href}
+              className="site-header__link text-sm font-medium"
+            >
               {link.label}
             </a>
           ))}
