@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { projects } from "@/data/portfolio";
-import { PhoneShowcase } from "@/components/PhoneShowcase";
+import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { Reveal, scaleIn } from "@/components/motion";
 
 export function Projects() {
@@ -41,9 +41,9 @@ export function Projects() {
                 >
                   <div className="relative flex justify-center rounded-[2rem] bg-gradient-to-b from-zinc-200/80 to-zinc-100 px-6 py-10 sm:px-10 sm:py-12">
                     <div className="pointer-events-none absolute inset-x-10 top-8 h-40 rounded-full bg-accent-bright/15 blur-3xl" />
-                    <PhoneShowcase
-                      src={project.image}
-                      alt={`${project.title} full app screenshot`}
+                    <ProjectShowcase
+                      title={project.title}
+                      images={project.images}
                       priority={index === 0}
                     />
                   </div>

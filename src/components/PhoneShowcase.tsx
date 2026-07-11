@@ -66,7 +66,6 @@ export function PhoneShowcase({ src, alt, priority }: PhoneShowcaseProps) {
       }
     >
       <div className="phone-frame">
-        <div className="phone-notch" aria-hidden />
         <div className="phone-screen">
           <Image
             src={withBasePath(src)}

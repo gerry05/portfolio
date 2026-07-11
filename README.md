@@ -4,6 +4,5 @@ Personal site of **Gerry Albert Buala** — software developer from the Philippi
 
 **[gerry05.github.io/portfolio](https://gerry05.github.io/portfolio/)**
 
----
 
 Next.js · React · TypeScript · Tailwind CSS · Framer Motion
