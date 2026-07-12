@@ -9,7 +9,7 @@ import {
   useState,
   useSyncExternalStore,
 } from "react";
-import { useReducedMotion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { site } from "@/data/portfolio";
 import { SoftErrorBoundary } from "@/components/SoftErrorBoundary";
 import { BookAtmosphere } from "@/components/book/BookAtmosphere";
@@ -42,7 +42,7 @@ function useMediaQuery(query: string, serverSnapshot = false) {
 }
 
 export function BookStage() {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const spreads = useMemo(() => buildSpreads(), []);
   const [index, setIndex] = useState(0);
   const [showHint, setShowHint] = useState(true);

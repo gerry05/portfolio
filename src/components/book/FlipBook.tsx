@@ -8,14 +8,16 @@ import {
   useState,
   type CSSProperties,
   type MutableRefObject,
+  type MouseEvent as ReactMouseEvent,
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
 } from "react";
-import { useReducedMotion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import type { BookSpread } from "@/components/book/types";
 import type { FlatPage } from "@/components/book/flattenSpreads";
 
 const FLIP_MS = 1200;
+const FLIP_MS_REDUCED = 450;
 const SCROLL_COOLDOWN_MS = 900;
 const COMMIT_RATIO = 0.22;
 const EASE = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -67,7 +69,7 @@ export function FlipBook({
   onIndexChange,
   apiRef,
 }: FlipBookProps) {
-  const reduce = useReducedMotion();
+  const reduce = usePrefersReducedMotion();
   const leaves = useMemo(() => buildLeaves(spreads), [spreads]);
   const maxFlipped = singlePage
     ? Math.max(0, flatPages.length - 1)
@@ -88,6 +90,7 @@ export function FlipBook({
   const lockRef = useRef(false);
   const scrollLockRef = useRef(0);
   const animRef = useRef<number | null>(null);
+  const pointerHandledRef = useRef(false);
   const dragRef = useRef<{
     startX: number;
     startY: number;
@@ -110,7 +113,7 @@ export function FlipBook({
     dirRef.current = dir;
   }, [dir]);
 
-  const duration = reduce ? 0 : FLIP_MS;
+  const duration = reduce ? FLIP_MS_REDUCED : FLIP_MS;
 
   const cancelAnim = useCallback(() => {
     if (animRef.current != null) {
@@ -140,17 +143,6 @@ export function FlipBook({
   const animateTo = useCallback(
     (target: number, direction: Dir, fromIndex: number) => {
       cancelAnim();
-      if (reduce) {
-        if (target >= 1) finishFlip(direction, fromIndex);
-        else {
-          setProgress(0);
-          progressRef.current = 0;
-          setPhase("idle");
-          phaseRef.current = "idle";
-          lockRef.current = false;
-        }
-        return;
-      }
 
       const start = progressRef.current;
       if (target >= 1 && start >= 0.94) {
@@ -173,7 +165,8 @@ export function FlipBook({
 
       const startTime = performance.now();
       const dist = Math.abs(target - start);
-      const ms = Math.max(320, FLIP_MS * Math.max(dist, 0.4));
+      const flipMs = reduce ? FLIP_MS_REDUCED : FLIP_MS;
+      const ms = Math.max(220, flipMs * Math.max(dist, 0.4));
 
       const tick = (now: number) => {
         const t = Math.min(1, (now - startTime) / ms);
@@ -304,11 +297,47 @@ export function FlipBook({
       width: bookRef.current?.offsetWidth ?? 400,
       pointerId: e.pointerId,
     };
-    try {
-      (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    } catch {
-      /* ignore */
+    // Pointer capture can swallow mouse clicks on Windows Chrome/Firefox.
+    if (e.pointerType !== "mouse") {
+      try {
+        (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+      } catch {
+        /* ignore */
+      }
     }
+  }
+
+  function handleTap(clientX: number) {
+    if (phaseRef.current !== "idle" || lockRef.current) return false;
+
+    if (indexRef.current === 0) {
+      next();
+      return true;
+    }
+
+    const el = bookRef.current;
+    if (!el) return false;
+    const rect = el.getBoundingClientRect();
+    const rel = (clientX - rect.left) / Math.max(1, rect.width);
+    if (rel > 0.72) {
+      next();
+      return true;
+    }
+    if (rel < 0.28) {
+      prev();
+      return true;
+    }
+    return false;
+  }
+
+  function onClick(e: ReactMouseEvent) {
+    if (pointerHandledRef.current) {
+      pointerHandledRef.current = false;
+      return;
+    }
+    const target = e.target as HTMLElement;
+    if (target.closest("a, button, input, textarea, [role='tab']")) return;
+    handleTap(e.clientX);
   }
 
   function onPointerMove(e: ReactPointerEvent) {
@@ -372,20 +401,11 @@ export function FlipBook({
       Math.abs(e.clientX - drag.startX) < 10 &&
       Math.abs(e.clientY - drag.startY) < 10;
     dragRef.current = null;
-    if (phaseRef.current !== "idle") return;
     if (!wasTap) return;
 
-    // Tap: closed cover opens; open book uses edge zones
-    if (indexRef.current === 0) {
-      next();
-      return;
+    if (handleTap(e.clientX)) {
+      pointerHandledRef.current = true;
     }
-    const el = bookRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const rel = (e.clientX - rect.left) / Math.max(1, rect.width);
-    if (rel > 0.72) next();
-    else if (rel < 0.28) prev();
   }
 
   function onPointerCancel() {
@@ -397,7 +417,9 @@ export function FlipBook({
   }
 
   const active = phase !== "idle";
-  const closed = flipped === 0 && !active;
+  // Keep the full-width closed cover layout while opening from the cover.
+  const closed =
+    index === 0 && (phase === "idle" || (active && dir === "next"));
 
   // Which leaf is currently turning?
   // next: turn leaf at `flipped` (top of right stack)
@@ -443,6 +465,7 @@ export function FlipBook({
         onPointerMove={onPointerMove}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerCancel}
+        onClick={onClick}
         style={
           {
             "--flip-duration": `${duration}ms`,
@@ -485,6 +508,7 @@ export function FlipBook({
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
       onPointerCancel={onPointerCancel}
+      onClick={onClick}
       style={
         {
           "--flip-duration": `${duration}ms`,
@@ -503,7 +527,10 @@ export function FlipBook({
       {closed ? (
         <div
           className="book-leaf book-leaf--cover is-active"
-          style={{ transform: "rotateY(0deg)", zIndex: 10 }}
+          style={{
+            transform: `rotateY(${active && dir === "next" ? turningAngle : 0}deg)`,
+            zIndex: 10,
+          }}
         >
           <div className="book-leaf__face book-leaf__face--front book-leaf__face--cover">
             {leaves[0]?.front}

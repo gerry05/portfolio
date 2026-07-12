@@ -1386,8 +1386,9 @@ a {
 
 /* ——— Custom cursor (kept) ——— */
 
-.has-custom-cursor,
-.has-custom-cursor * {
+/* Only hide the OS cursor once our custom cursor is actually tracking. */
+.has-custom-cursor.is-cursor-visible,
+.has-custom-cursor.is-cursor-visible * {
   cursor: none !important;
 }
 
@@ -1523,10 +1524,6 @@ a {
   animation-duration: 1.1s;
 }
 
-.custom-cursor[data-reduced="true"] .custom-cursor__ring-spin {
-  animation: none;
-}
-
 @keyframes cursor-spin {
   to {
     transform: rotate(360deg);
@@ -1535,10 +1532,12 @@ a {
 
 @media (prefers-reduced-motion: reduce) {
   .flipbook-turn,
-  .flipbook-single-sheet,
-  .custom-cursor__ring-spin {
-    animation: none !important;
+  .flipbook-single-sheet {
     transition: none !important;
+  }
+
+  .custom-cursor__ring-spin {
+    animation-duration: 6s;
   }
 
   .book-cta:hover {
