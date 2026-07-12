@@ -103,22 +103,6 @@ export function BookStage() {
             onIndexChange={onIndexChange}
             apiRef={apiRef}
           />
-          {index === 0 ? (
-            <button
-              type="button"
-              className="book-open-cue"
-              onClick={() => apiRef.current?.next()}
-              aria-label="Open the book"
-            >
-              <span className="book-open-cue__label">
-                Open the book
-                <span className="book-open-cue__sub">Drag or tap the cover</span>
-              </span>
-              <span className="book-open-cue__arrow" aria-hidden>
-                →
-              </span>
-            </button>
-          ) : null}
         </div>
       </div>
 
