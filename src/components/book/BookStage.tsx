@@ -11,6 +11,7 @@ import {
 } from "react";
 import { useReducedMotion } from "framer-motion";
 import { site } from "@/data/portfolio";
+import { SoftErrorBoundary } from "@/components/SoftErrorBoundary";
 import { BookAtmosphere } from "@/components/book/BookAtmosphere";
 import {
   FlipBook,
@@ -74,7 +75,11 @@ export function BookStage() {
         .join(" ")}
     >
       <BookAtmosphere />
-      {webgl ? <BookScene reducedMotion={Boolean(reduce)} /> : null}
+      {webgl ? (
+        <SoftErrorBoundary>
+          <BookScene reducedMotion={Boolean(reduce)} />
+        </SoftErrorBoundary>
+      ) : null}
 
       <header className="book-topbar">
         <button

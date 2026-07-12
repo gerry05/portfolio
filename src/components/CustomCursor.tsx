@@ -1,38 +1,43 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const INTERACTIVE =
   "a, button, [role='button'], input, textarea, select, label, summary, .cursor-pointer, [data-cursor='hover']";
 
+/**
+ * Custom cursor for fine pointers. Positioned via direct DOM updates (no
+ * full-screen overlay) so it cannot intercept clicks in production browsers.
+ */
 export function CustomCursor() {
-  const reduce = useReducedMotion();
+  const pointerRef = useRef<HTMLDivElement>(null);
   const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const [reduce, setReduce] = useState(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(pointer: fine)");
+    const fine = window.matchMedia("(pointer: fine)");
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-    const enable = () => {
-      if (!mq.matches) {
-        setEnabled(false);
-        document.documentElement.classList.remove("has-custom-cursor");
-        return;
-      }
-      setEnabled(true);
-      document.documentElement.classList.add("has-custom-cursor");
+    const sync = () => {
+      const on = fine.matches;
+      setEnabled(on);
+      setReduce(motion.matches);
+      document.documentElement.classList.toggle("has-custom-cursor", on);
+      if (!on) setVisible(false);
     };
 
-    enable();
+    sync();
+    fine.addEventListener("change", sync);
+    motion.addEventListener("change", sync);
 
     const onMove = (e: PointerEvent) => {
-      x.set(e.clientX);
-      y.set(e.clientY);
+      if (!fine.matches) return;
+      const node = pointerRef.current;
+      if (node) {
+        node.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+      }
       setVisible(true);
     };
 
@@ -46,16 +51,16 @@ export function CustomCursor() {
     window.addEventListener("pointermove", onMove, { passive: true });
     window.addEventListener("mouseover", onOver, { passive: true });
     document.documentElement.addEventListener("mouseleave", onLeave);
-    mq.addEventListener("change", enable);
 
     return () => {
       document.documentElement.classList.remove("has-custom-cursor");
       window.removeEventListener("pointermove", onMove);
       window.removeEventListener("mouseover", onOver);
       document.documentElement.removeEventListener("mouseleave", onLeave);
-      mq.removeEventListener("change", enable);
+      fine.removeEventListener("change", sync);
+      motion.removeEventListener("change", sync);
     };
-  }, [x, y]);
+  }, []);
 
   if (!enabled) return null;
 
@@ -65,52 +70,16 @@ export function CustomCursor() {
       aria-hidden="true"
       data-hover={hovering}
       data-reduced={reduce ? "true" : "false"}
+      data-visible={visible ? "true" : "false"}
     >
-      <motion.div
-        className="custom-cursor__pointer"
-        style={{ x, y }}
-        initial={false}
-        animate={{ opacity: visible ? 1 : 0 }}
-        transition={{ duration: 0.15 }}
-      >
+      <div ref={pointerRef} className="custom-cursor__pointer">
         <span className="custom-cursor__glow" />
-        <motion.span
-          className="custom-cursor__ring"
-          initial={false}
-          animate={{ scale: hovering ? 1.18 : 1 }}
-          transition={
-            reduce
-              ? { duration: 0 }
-              : { type: "spring", stiffness: 420, damping: 28 }
-          }
-        >
+        <span className="custom-cursor__ring">
           <span className="custom-cursor__ring-spin" />
-        </motion.span>
-        <motion.span
-          className="custom-cursor__core"
-          initial={false}
-          animate={{ scale: hovering ? 0.3 : 1 }}
-          transition={
-            reduce
-              ? { duration: 0 }
-              : { type: "spring", stiffness: 650, damping: 30 }
-          }
-        />
-        <motion.span
-          className="custom-cursor__mark"
-          initial={false}
-          animate={{
-            opacity: hovering ? 1 : 0,
-            scale: hovering ? 1 : 0.4,
-            rotate: hovering ? 90 : 0,
-          }}
-          transition={
-            reduce
-              ? { duration: 0 }
-              : { type: "spring", stiffness: 500, damping: 32 }
-          }
-        />
-      </motion.div>
+        </span>
+        <span className="custom-cursor__core" />
+        <span className="custom-cursor__mark" />
+      </div>
     </div>
   );
 }

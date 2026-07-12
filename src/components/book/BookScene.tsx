@@ -60,7 +60,7 @@ export function BookScene({
           alpha: true,
           powerPreference: "low-power",
         }}
-        style={{ background: "transparent" }}
+        style={{ background: "transparent", pointerEvents: "none" }}
       >
         <ambientLight intensity={0.2} />
         <Dust />

@@ -98,6 +98,12 @@ a {
   height: 100% !important;
 }
 
+.book-scene,
+.book-scene canvas,
+.book-scene * {
+  pointer-events: none !important;
+}
+
 /* Empty page stage */
 .book-atmosphere__paper {
   position: absolute;
@@ -257,6 +263,7 @@ a {
   --book-h: min(560px, calc(100svh - 10rem));
   --page-w: calc(var(--book-w) / 2);
   position: relative;
+  z-index: 2;
   width: var(--book-w);
   height: var(--book-h);
   transform-style: preserve-3d;
@@ -264,6 +271,12 @@ a {
   touch-action: none;
   -webkit-user-drag: none;
   perspective: 2200px;
+  pointer-events: auto;
+  cursor: grab;
+}
+
+.flipbook:active {
+  cursor: grabbing;
 }
 
 .flipbook.is-closed {
@@ -1380,19 +1393,30 @@ a {
 
 .custom-cursor {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 200;
+  width: 0;
+  height: 0;
+  overflow: visible;
   pointer-events: none;
-  overflow: hidden;
 }
 
 .custom-cursor__pointer {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 28px;
   height: 28px;
   margin: -14px 0 0 -14px;
+  opacity: 0;
+  will-change: transform;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+}
+
+.custom-cursor[data-visible="true"] .custom-cursor__pointer {
+  opacity: 1;
 }
 
 .custom-cursor__glow {
@@ -1410,6 +1434,11 @@ a {
 .custom-cursor__ring {
   position: absolute;
   inset: 0;
+  transition: transform 0.2s ease;
+}
+
+.custom-cursor[data-hover="true"] .custom-cursor__ring {
+  transform: scale(1.18);
 }
 
 .custom-cursor__ring-spin {
@@ -1442,6 +1471,11 @@ a {
   border-radius: 9999px;
   background: var(--accent-bright);
   box-shadow: 0 0 0 2px #ffffff;
+  transition: transform 0.2s ease;
+}
+
+.custom-cursor[data-hover="true"] .custom-cursor__core {
+  transform: scale(0.3);
 }
 
 .custom-cursor__mark {
@@ -1453,6 +1487,14 @@ a {
   height: 12px;
   margin: -6px 0 0 -6px;
   pointer-events: none;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.custom-cursor[data-hover="true"] .custom-cursor__mark {
+  opacity: 1;
+  transform: scale(1) rotate(90deg);
 }
 
 .custom-cursor__mark::before,
@@ -1479,6 +1521,10 @@ a {
 
 .custom-cursor[data-hover="true"] .custom-cursor__ring-spin {
   animation-duration: 1.1s;
+}
+
+.custom-cursor[data-reduced="true"] .custom-cursor__ring-spin {
+  animation: none;
 }
 
 @keyframes cursor-spin {

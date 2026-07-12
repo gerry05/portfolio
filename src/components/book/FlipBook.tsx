@@ -94,6 +94,7 @@ export function FlipBook({
     dragging: boolean;
     dir: Dir | null;
     width: number;
+    pointerId: number;
   } | null>(null);
 
   useEffect(() => {
@@ -289,8 +290,11 @@ export function FlipBook({
     const target = e.target as HTMLElement;
     if (target.closest("a, button, input, textarea, [role='tab']")) return;
 
-    // Keep the gesture on the book (avoids scroll/browser back-swipe stealing it)
-    e.preventDefault();
+    // Only prevent default for touch/pen — calling it for mouse can suppress
+    // clicks in some desktop browsers (notably Windows Chrome/Firefox).
+    if (e.pointerType === "touch" || e.pointerType === "pen") {
+      e.preventDefault();
+    }
 
     dragRef.current = {
       startX: e.clientX,
@@ -298,6 +302,7 @@ export function FlipBook({
       dragging: false,
       dir: null,
       width: bookRef.current?.offsetWidth ?? 400,
+      pointerId: e.pointerId,
     };
     try {
       (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
@@ -309,6 +314,7 @@ export function FlipBook({
   function onPointerMove(e: ReactPointerEvent) {
     const drag = dragRef.current;
     if (!drag || phaseRef.current === "settle") return;
+    if (drag.pointerId != null && e.pointerId !== drag.pointerId) return;
 
     const dx = e.clientX - drag.startX;
     const dy = e.clientY - drag.startY;
@@ -334,7 +340,9 @@ export function FlipBook({
       cancelAnim();
     }
 
-    e.preventDefault();
+    if (e.pointerType === "touch" || e.pointerType === "pen") {
+      e.preventDefault();
+    }
     if (!drag.dir) return;
 
     // Shorter span on small books so a normal finger swipe can finish the turn
@@ -350,6 +358,7 @@ export function FlipBook({
   function onPointerUp(e: ReactPointerEvent) {
     const drag = dragRef.current;
     if (!drag) return;
+    if (drag.pointerId != null && e.pointerId !== drag.pointerId) return;
 
     if (drag.dragging && drag.dir) {
       const fromIndex = indexRef.current;
@@ -359,8 +368,12 @@ export function FlipBook({
       return;
     }
 
+    const wasTap =
+      Math.abs(e.clientX - drag.startX) < 10 &&
+      Math.abs(e.clientY - drag.startY) < 10;
     dragRef.current = null;
     if (phaseRef.current !== "idle") return;
+    if (!wasTap) return;
 
     // Tap: closed cover opens; open book uses edge zones
     if (indexRef.current === 0) {
@@ -370,7 +383,7 @@ export function FlipBook({
     const el = bookRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const rel = (e.clientX - rect.left) / rect.width;
+    const rel = (e.clientX - rect.left) / Math.max(1, rect.width);
     if (rel > 0.72) next();
     else if (rel < 0.28) prev();
   }
