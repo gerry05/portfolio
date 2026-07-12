@@ -44,7 +44,7 @@ export default function RootLayout({
       lang="en"
       className={`${outfit.variable} ${bricolage.variable} ${plex.variable} h-full antialiased`}
     >
-      <body className="site-shell min-h-full">
+      <body className="min-h-full h-full overflow-hidden">
         <CustomCursor />
         {children}
       </body>

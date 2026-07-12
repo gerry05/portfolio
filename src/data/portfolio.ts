@@ -30,7 +30,7 @@ export const skills = [
   },
   {
     category: "Tools & Workflow",
-    items: ["Git", "GitHub", "VS Code", "Android Studio", "npm"],
+    items: ["Git", "GitHub","Cursor", "VS Code",  "Android Studio", "npm"],
   },
 ] as const;
 
@@ -45,7 +45,7 @@ export const projects = [
     title: "TaraSnap",
     description:
       "An event photobooth app—pick a frame, snap or upload photos, customize your strip, and share instantly. Built with Flutter, Next.js, and Supabase, with event hosting so guests can use branded frames together.",
-    tools: ["Flutter", "Next.js", "Supabase"],
+    tools: ["Flutter", "Next.js", "Supabase", "Android", "iOS"],
     images: [
       {
         src: "/projects/tarasnap-latest.jpg",
@@ -77,7 +77,7 @@ export const projects = [
     title: "AmBooth",
     description:
       "A receipt photobooth app for capturing and printing photo-strip memories—Flutter for mobile, Next.js for the admin web app, and Supabase on the backend.",
-    tools: ["Flutter", "Next.js", "Supabase"],
+    tools: ["Flutter", "Next.js", "Supabase", "Android"],
     images: [
       {
         src: "/projects/ambooth.png",
@@ -114,44 +114,44 @@ export const projects = [
     ],
     website: "https://gerry05.github.io/wordhunt",
   },
-  {
-    title: "Learnpod",
-    description:
-      "A learning platform powered by Flutter, Firebase, and Node.js.",
-    tools: ["Android", "Flutter", "Firebase", "Node.js"],
-    images: [
-      {
-        src: "/projects/learnpod.png",
-        frame: "phone" as const,
-        alt: "Learnpod app screenshot",
-      },
-    ],
-  },
-  {
-    title: "Libot",
-    description:
-      "A Flutter + Firebase mobile app focused on everyday utility and smooth UX.",
-    tools: ["Android", "Flutter", "Firebase"],
-    images: [
-      {
-        src: "/projects/libot.png",
-        frame: "phone" as const,
-        alt: "Libot app screenshot",
-      },
-    ],
-  },
-  {
-    title: "Cognitv",
-    description:
-      "A native Android app built in Java for focused cognitive experiences.",
-    tools: ["Android", "Java"],
-    images: [
-      {
-        src: "/projects/cognitv.png",
-        frame: "phone" as const,
-        alt: "Cognitv app screenshot",
-      },
-    ],
-  },
+  // {
+  //   title: "Learnpod",
+  //   description:
+  //     "A learning platform powered by Flutter, Firebase, and Node.js.",
+  //   tools: ["Android", "Flutter", "Firebase", "Node.js"],
+  //   images: [
+  //     {
+  //       src: "/projects/learnpod.png",
+  //       frame: "phone" as const,
+  //       alt: "Learnpod app screenshot",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Libot",
+  //   description:
+  //     "A Flutter + Firebase mobile app focused on everyday utility and smooth UX.",
+  //   tools: ["Android", "Flutter", "Firebase"],
+  //   images: [
+  //     {
+  //       src: "/projects/libot.png",
+  //       frame: "phone" as const,
+  //       alt: "Libot app screenshot",
+  //     },
+  //   ],
+  // },
+  // {
+  //   title: "Cognitv",
+  //   description:
+  //     "A native Android app built in Java for focused cognitive experiences.",
+  //   tools: ["Android", "Java"],
+  //   images: [
+  //     {
+  //       src: "/projects/cognitv.png",
+  //       frame: "phone" as const,
+  //       alt: "Cognitv app screenshot",
+  //     },
+  //   ],
+  // },
  
 ] as const;
