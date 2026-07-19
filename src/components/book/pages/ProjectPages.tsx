@@ -81,7 +81,11 @@ export function ProjectRight({ project }: { project: Project }) {
               width={current.frame === "phone" ? 390 : 960}
               height={current.frame === "phone" ? 844 : 540}
               className="book-plate-image"
-              sizes="(max-width: 768px) 40vw, 280px"
+              sizes={
+                current.frame === "phone"
+                  ? "(max-width: 768px) 40vw, 280px"
+                  : "(max-width: 768px) 90vw, 420px"
+              }
             />
           </div>
         </button>

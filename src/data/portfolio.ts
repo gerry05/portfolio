@@ -88,6 +88,20 @@ export const projects = [
     website: "https://www.facebook.com/amboothph",
   },
   {
+    title: "Classic TV PH",
+    description:
+      "A retro CRT television simulator in the browser—tune channels, search YouTube, and relive classic broadcast vibes through a vintage TV interface. Built with Next.js.",
+    tools: ["Next.js", "React", "TypeScript"],
+    images: [
+      {
+        src: "/projects/classictvph.jpeg",
+        frame: "browser" as const,
+        alt: "Classic TV PH website screenshot",
+      },
+    ],
+    website: "https://classictvph.live",
+  },
+  {
     title: "RealtyTrack Offline",
     description:
       "An offline-first Flutter app for real-estate tracking when connectivity is unreliable.",

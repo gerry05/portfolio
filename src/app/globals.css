@@ -912,7 +912,7 @@ a {
   }
 
   .book-stage.is-landscape .book-plate-browser {
-    width: min(200px, 56cqw, 70cqh);
+    width: min(360px, 92cqw, 88cqh);
   }
 
   .book-stage.is-landscape .book-plate-arrow {
@@ -1201,6 +1201,15 @@ a {
   border-color: color-mix(in srgb, var(--accent) 35%, transparent);
 }
 
+.book-plate-row:has(.book-plate-browser) {
+  width: 100%;
+}
+
+.book-plate:has(.book-plate-browser) {
+  flex: 1;
+  min-width: 0;
+}
+
 .book-plate-phone {
   width: min(160px, 36vw);
   margin: 0 auto;
@@ -1211,7 +1220,7 @@ a {
 }
 
 .book-plate-browser {
-  width: min(280px, 70%);
+  width: min(420px, 100%);
   margin: 0 auto;
   border-radius: 0.5rem;
   overflow: hidden;
@@ -1242,6 +1251,50 @@ a {
 
 .book-plate-browser .book-plate-image {
   border-radius: 0;
+}
+
+/* ——— Project showcase (scroll layout) ——— */
+
+.browser-stage {
+  width: min(100%, 560px);
+  margin-inline: auto;
+}
+
+.browser-frame {
+  overflow: hidden;
+  border-radius: 0.85rem;
+  background: linear-gradient(160deg, #2a2a2e 0%, #0c0c0e 55%, #1a1a1e 100%);
+  box-shadow:
+    0 16px 40px rgba(28, 25, 23, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.35);
+}
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.browser-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.browser-screen {
+  overflow: hidden;
+  background: #f4f5f7;
+}
+
+.browser-image {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .book-plate-dots {

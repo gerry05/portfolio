@@ -39,7 +39,7 @@ function BrowserShowcase({
             height={848}
             priority={priority}
             className="browser-image"
-            sizes="(max-width: 768px) 100vw, 480px"
+            sizes="(max-width: 768px) 100vw, 560px"
           />
         </div>
       </div>
